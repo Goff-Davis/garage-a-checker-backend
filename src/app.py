@@ -1,13 +1,13 @@
 import json
 import firebase_admin
+import email
 from firebase_admin import credentials, firestore
 from flask import Flask, jsonify
 from flask_cors import CORS
 from bs4 import BeautifulSoup
 from requests import get
 from datetime import datetime
-from config import DATABASE_CONFIG, EMAIL_CONFIG
-from email import send_email
+from config import CRED_LOCATION, SCRAPE_URL
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
