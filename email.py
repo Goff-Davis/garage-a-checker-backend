@@ -9,17 +9,17 @@ def send_email(body, subject=f'ERROR LOG [{datetime.strftime(datetime.now(), "%b
     Sends an email with the subject formatted as 'ERROR LOG [Jan 01, 1970 - 12:00 AM]'
     """
     def send():
-        from_ = os.environ['FROM']
-        to = os.environ['TO']
+        from_ = os.environ.get('FROM')
+        to = os.environ.get('TO')
 
         msg = MIMEMultipart()
         msg['From'] = from_
         msg['To'] = to
         msg['Subject'] = subject
         msg.attach(MIMEText(body, 'plain'))
-        server = smtplib.SMTP(os.environ['HOST'], os.environ['PORT'])
+        server = smtplib.SMTP(os.environ.get('HOST'), os.environ.get('PORT'))
         server.starttls()
-        server.login(from_, os.environ['PASS'])
+        server.login(from_, os.environ.get('PASS'))
         server.sendmail(from_, to, msg.as_string())
         server.quit()
 

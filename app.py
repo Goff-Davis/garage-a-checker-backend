@@ -2,6 +2,7 @@ import json
 import os
 import firebase_admin
 import email
+import re
 from firebase_admin import credentials, firestore
 from flask import Flask, jsonify
 from flask_cors import CORS
@@ -14,13 +15,12 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 CORS(app)
 
 # set up firebase service account
-key = os.environ['FIREBASE_PRIVATE_KEY']
-key= re.sub('\\n', '\n', key)
-
 cred = credentials.Certificate({
-    "private_key": key,
-    "client_email": os.environ["FIREBASE_CLIENT_EMAIL"],
-    "project_id": os.environ["FIREBASE_PROJECT_ID"]
+    "private_key": os.environ.get('FIREBASE_PRIVATE_KEY').replace('\\n', '\n'),
+    "client_email": os.environ.get('FIREBASE_CLIENT_EMAIL'),
+    "project_id": os.environ.get('FIREBASE_PROJECT_ID'),
+    "type": os.environ.get('FIREBASE_TYPE'),
+    "token_uri": os.environ.get('FIREBASE_TOKEN_URI')
 })
 firebase_admin.initialize_app(cred)
 
@@ -30,7 +30,7 @@ def jsonify_error(msg):
     return jsonify({'error': msg})
 
 def api():
-    page = get(os.environ['SCRAPE_URL'])
+    page = get(os.environ.get('SCRAPE_URL'))
 
     if page.status_code != 200:
         send_email("There was an error loading UCF Parking Website. Make sure the website is still up and the URL hasn't been changed.")
