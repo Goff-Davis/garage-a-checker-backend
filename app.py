@@ -1,7 +1,7 @@
 import json
 import os
 import firebase_admin
-import email
+import email_helper
 import re
 from firebase_admin import credentials, firestore
 from flask import Flask, jsonify
