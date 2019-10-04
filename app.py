@@ -7,14 +7,17 @@ from flask_cors import CORS
 from bs4 import BeautifulSoup
 from requests import get
 from datetime import datetime
-from config import CRED_LOCATION, SCRAPE_URL
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 CORS(app)
 
 # set up firebase service account
-cred = credentials.Certificate(CRED_LOCATION)
+cred = credentials.cert({
+    "private_key": os.env['FIREBASE_PRIVATE_KEY'],
+    "client_email": os.env["FIREBASE_CLIENT_EMAIL"],
+    "project_id": os.env["FIREBASE_PROJECT_ID"]
+})
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()

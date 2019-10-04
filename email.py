@@ -3,25 +3,23 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from datetime import datetime
 from threading import Thread
-from config import EMAIL_CONFIG
-
 
 def send_email(body, subject=f'ERROR LOG [{datetime.strftime(datetime.now(), "%b %d, %Y - %I:%M %p")}]'):
     """
     Sends an email with the subject formatted as 'ERROR LOG [Jan 01, 1970 - 12:00 AM]'
     """
     def send():
-        from_ = EMAIL_CONFIG['FROM']
-        to = EMAIL_CONFIG['TO']
+        from_ = os.environ['FROM']
+        to = os.environ['TO']
 
         msg = MIMEMultipart()
         msg['From'] = from_
         msg['To'] = to
         msg['Subject'] = subject
         msg.attach(MIMEText(body, 'plain'))
-        server = smtplib.SMTP(EMAIL_CONFIG['HOST'], EMAIL_CONFIG['PORT'])
+        server = smtplib.SMTP(os.environ['HOST'], os.environ['PORT'])
         server.starttls()
-        server.login(from_, EMAIL_CONFIG['PASSWORD'])
+        server.login(from_, os.environ['PASS'])
         server.sendmail(from_, to, msg.as_string())
         server.quit()
 
