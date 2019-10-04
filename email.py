@@ -17,7 +17,7 @@ def send_email(body, subject=f'ERROR LOG [{datetime.strftime(datetime.now(), "%b
         msg['To'] = to
         msg['Subject'] = subject
         msg.attach(MIMEText(body, 'plain'))
-        server = smtplib.SMTP(os.environ.get('HOST'), os.environ.get('PORT'))
+        server = smtplib.SMTP(os.environ.get('HOST'), os.environ.get('MAIL_PORT'))
         server.starttls()
         server.login(from_, os.environ.get('PASS'))
         server.sendmail(from_, to, msg.as_string())
