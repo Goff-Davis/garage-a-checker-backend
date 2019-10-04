@@ -1,5 +1,5 @@
 firebase-admin
 flask
-flask_cors
+flask-cors
 bs4
 requests
