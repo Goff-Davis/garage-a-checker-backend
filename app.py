@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 from requests import get
 from datetime import datetime
 
+# flask config
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 CORS(app)
@@ -29,6 +30,7 @@ db = firestore.client()
 def jsonify_error(msg):
     return jsonify({'error': msg})
 
+# get and parse the data from the ucf homepage
 def api():
     page = get(os.environ.get('SCRAPE_URL'))
 
@@ -65,6 +67,7 @@ def api():
 
     return jsonify(data)
 
+# save the garage info to the database
 @app.route('/')
 def add():
     data = api().json
