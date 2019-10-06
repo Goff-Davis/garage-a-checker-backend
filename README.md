@@ -13,6 +13,6 @@ Go to https://isgarageafull.com
 
 This is the front end of my website. [View the code here](https://github.com/Goff-Davis/garage-a-checker-frontend/)
 
-## Why built this
+## Why build this?
 
 I wanted to practice interacting with Google Firebase and Heroku with python, so I built a silly project around it.
