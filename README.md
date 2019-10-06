@@ -11,8 +11,8 @@ This is done automatically every hour, and can be done manually by going to the 
 
 Go to https://isgarageafull.com
 
-This is the front end of my website. ![View the code here](https://github.com/Goff-Davis/garage-a-checker-frontend/tree/develop)
+This is the front end of my website. [View the code here](https://github.com/Goff-Davis/garage-a-checker-frontend/)
 
-## Why build this
+## Why built this
 
 I wanted to practice interacting with Google Firebase and Heroku with python, so I built a silly project around it.
