@@ -5,7 +5,7 @@
 
 First it scrapes data from the UCF parking website. Then it parses that data for the information it needs and writes it to my Firebase database.
 
-This is done automatically every hour, and can be done manually by going to the ![backend's website](https://garage-a-checker.herokuapp.com/).
+This is done automatically every hour, and can be done manually by going to the [backend's website](https://garage-a-checker.herokuapp.com/).
 
 ## How to view the information
 
