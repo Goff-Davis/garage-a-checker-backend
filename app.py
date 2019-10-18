@@ -77,7 +77,7 @@ def add():
         return 'Failure!'
 
     date = datetime.now()
-    data['date'] = date.isoformat()
+    data['date'] = date.isoformat() + 'Z'
     data['timestamp'] = int(date.timestamp())
 
     doc_ref = db.collection(u'latest_info').document('garage-a')
